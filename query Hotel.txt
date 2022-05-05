@@ -1,0 +1,40 @@
+1--- SELECT* from ospiti where document_number is NOT NULL order by id
+
+2---SELECT name,lastname,date_of_birth from ospiti where date_of_birth > '01/01/1988';
+
+3--SELECT name,lastname from ospiti where name like'd%'
+
+4-- select sum(price) as Totale from pagamenti where status='accepted'
+
+5--select Max(price) from pagamenti  where status ='accepted'
+
+6--select Sum(beds) from stanze 
+
+
+
+GROUP by
+
+1--select Sum(price) from pagamenti group by status
+2--select count(*) from stanze group by room_number
+
+
+JOIN
+
+1-- select ospiti.id, ospiti.name , prenotazioni.id, prenotazioni.stanza_id from ospiti
+join prenotazioni_has_ospiti On prenotazioni_has_ospiti.ospite_id=ospite_id
+join prenotazioni ON prenotazioni_has_ospiti.prenotazione_id=prenotazione_id
+
+
+
+2-- select Sum(price) from pagamenti
+join prenotazioni On prenotazioni.id=pagamenti.id
+join stanze ON stanze.id=prenotazione_id
+where stanze.floor = 1
+
+
+
+BONUS
+
+select* from stanze
+ Full outer join prenotazioni on prenotazioni.id=stanze.id 
+ where stanze.created_at is NULL
